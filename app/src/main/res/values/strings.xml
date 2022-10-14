@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">travel_project</string>
+    <string name="info">INFO</string>
+    <string name="startDate">Start Date: 03/25/2022</string>
+    <string name="endDate">End Date: 04/02/2022</string>
+    <string name="numDays">Number of days: 8 days</string>
+    <string name="budget">Budget: $9000</string>
 </resources>
