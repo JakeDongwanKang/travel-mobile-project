@@ -11,11 +11,11 @@ public class InterestsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interests);
-    }
 
-    Button toActivityInfo = findViewById(R.id.btnToInfo);
-    toActivityInfo.setOnClickListener(view -> {
-        Intent intent = new Intent(this, InfoActivity.class);
-        startActivity(intent);
-    });
+        Button toActivityInfo = findViewById(R.id.btnToInfo);
+        toActivityInfo.setOnClickListener(view -> {
+            Intent intent = new Intent(this, InfoActivity.class);
+            startActivity(intent);
+        });
+    }
 }
