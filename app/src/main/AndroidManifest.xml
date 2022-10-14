@@ -47,7 +47,7 @@
         <activity
             android:name=".ResultsActivity"
             android:exported="true"
-            android:parentActivityName=".InfoPage">
+            android:parentActivityName=".InfoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
