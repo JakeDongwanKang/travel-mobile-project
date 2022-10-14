@@ -12,4 +12,6 @@
     <string name="numDays">Number of days: 8 days</string>
     <string name="budget">Budget: $9000</string>
     <string name="results">Results</string>
+    <string name="map">Map</string>
+    <string name="back">Back</string>
 </resources>

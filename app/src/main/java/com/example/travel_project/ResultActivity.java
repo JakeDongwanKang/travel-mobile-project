@@ -1,10 +1,16 @@
 package com.example.travel_project;
 
+import static android.app.PendingIntent.getActivity;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -31,8 +37,20 @@ public class ResultActivity extends AppCompatActivity {
         arrayList.add("Event Result Two");
         arrayList.add("Event Result Three");
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_list_item_1, arrayList );
+
+
+        list.setOnItemClickListener((adapterView, view, position, id) -> {
+            MapFragment mapFragment = new MapFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("Title", (String) list.getItemAtPosition(position));
+            mapFragment.setArguments(bundle);
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.ctnFragment, mapFragment).addToBackStack(null).commit();
+        });
 
         list.setAdapter(arrayAdapter);
     }
