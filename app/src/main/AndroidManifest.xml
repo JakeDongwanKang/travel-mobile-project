@@ -43,15 +43,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".InfoPage"
-            android:exported="true"
-            android:parentActivityName=".InterestsActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+
         <activity
             android:name=".ResultsActivity"
             android:exported="true"
@@ -62,6 +54,17 @@
             </intent-filter>
         </activity>
 
+
+        <activity
+            android:name=".InfoActivity"
+            android:exported="true"
+            android:parentActivityName=".InterestsActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
