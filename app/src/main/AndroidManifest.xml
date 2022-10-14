@@ -45,7 +45,7 @@
         </activity>
 
         <activity
-            android:name=".ResultsActivity"
+            android:name=".ResultActivity"
             android:exported="true"
             android:parentActivityName=".InfoActivity">
             <intent-filter>
