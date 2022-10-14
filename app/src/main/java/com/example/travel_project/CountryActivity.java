@@ -1,5 +1,6 @@
 package com.example.travel_project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -15,7 +16,7 @@ public class CountryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_country);
 
-        Fragment country = new CityFragment();
+        Fragment country = new CountryFragment();
         Fragment city = new CityFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -34,6 +35,12 @@ public class CountryActivity extends AppCompatActivity {
             FragmentTransaction fragmentTransaction2 = fragmentManager.beginTransaction();
             fragmentTransaction2.replace(R.id.ctnFragment, city);
             fragmentTransaction2.commit();
+        });
+
+        Button toActivityInterest = findViewById(R.id.btnToInterests);
+        toActivityInterest.setOnClickListener(view -> {
+            Intent intent = new Intent(this, InterestsActivity.class);
+            startActivity(intent);
         });
     }
 }
