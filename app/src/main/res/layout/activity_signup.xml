@@ -45,7 +45,7 @@
         android:layout_height="60dp"
         android:hint="@string/username"
         android:autofillHints="@string/username"
-        android:inputType="textPassword"
+        android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@id/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
