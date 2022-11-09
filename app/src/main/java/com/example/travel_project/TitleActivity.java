@@ -53,7 +53,7 @@ public class TitleActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if(task.isSuccessful()) {
                 Toast.makeText(getApplicationContext(), "Login Successful!", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(TitleActivity.this, CountryActivity.class);
+                Intent intent = new Intent(TitleActivity.this, CountryActivity2.class);
                 startActivity(intent);
             } else {
                 Toast.makeText(getApplicationContext(), "Login Failed!", Toast.LENGTH_LONG).show();
