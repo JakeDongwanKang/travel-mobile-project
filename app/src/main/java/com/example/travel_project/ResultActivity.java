@@ -42,14 +42,14 @@ public class ResultActivity extends AppCompatActivity {
 
 
         list.setOnItemClickListener((adapterView, view, position, id) -> {
-            MapFragment mapFragment = new MapFragment();
-            Bundle bundle = new Bundle();
-            bundle.putString("Title", (String) list.getItemAtPosition(position));
-            mapFragment.setArguments(bundle);
+//            MapFragment mapFragment = new MapFragment();
+//            Bundle bundle = new Bundle();
+//            bundle.putString("Title", (String) list.getItemAtPosition(position));
+//            mapFragment.setArguments(bundle);
 
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.ctnFragment, mapFragment).addToBackStack(null).commit();
+//            FragmentManager fragmentManager = getSupportFragmentManager();
+//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//            fragmentTransaction.replace(R.id.ctnFragment, mapFragment).addToBackStack(null).commit();
         });
 
         list.setAdapter(arrayAdapter);
