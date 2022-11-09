@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class TitleActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     private EditText emailTextView, passwordTextView;
     private FirebaseAuth mAuth;
@@ -17,7 +17,7 @@ public class TitleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_title);
+        setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
         emailTextView = findViewById(R.id.userName);
