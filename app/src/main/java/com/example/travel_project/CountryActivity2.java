@@ -28,7 +28,7 @@ public class CountryActivity2 extends AppCompatActivity {
         WebService.setGeoNamesServer("api.geonames.org");
         WebService.setUserName("vta25");
         ToponymSearchCriteria searchCriteria = new ToponymSearchCriteria();
-        searchCriteria.setQ("country");
+        searchCriteria.setFeatureCode("CONT");
         ToponymSearchResult searchResult = null;
         try {
             searchResult = WebService.search(searchCriteria);
