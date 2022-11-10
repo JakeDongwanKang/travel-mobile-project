@@ -1,5 +1,6 @@
 package com.example.travel_project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,11 +36,12 @@ public class CountryActivity2 extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         for(Toponym toponym : searchResult.getToponyms()) {
             countries.add(toponym.getName());
         }
 
-        Spinner spinner = (Spinner) findViewById(R.id.country_spinner);
+        Spinner spinner = findViewById(R.id.country_spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, countries);
         spinner.setAdapter(adapter);
 
@@ -48,6 +50,13 @@ public class CountryActivity2 extends AppCompatActivity {
             // called when an item is selected
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 country = parent.getItemAtPosition(position).toString();
+
+                Bundle bundle = new Bundle();
+                Intent intent = new Intent(getApplicationContext(), InterestsActivity.class);
+
+                bundle.putString("country", country);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
 
             @Override

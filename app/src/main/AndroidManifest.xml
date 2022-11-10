@@ -32,9 +32,21 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+            <meta-data
+                android:name="com.google.android.geo.API_KEY"
+                android:value="AIzaSyDvPs0AMFg6GwgLBG3yk7res3FLrJWk0Ps" />
         </activity>
         <activity
             android:name=".CountryActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".CountryActivity2"
             android:exported="true"
             android:parentActivityName=".MainActivity">
             <intent-filter>

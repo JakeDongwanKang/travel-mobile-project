@@ -12,10 +12,15 @@ public class InfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+        Intent intent = new Intent(this, ResultActivity.class);
+
+        if (getIntent().getExtras() != null) {
+            Bundle bundle = getIntent().getExtras();
+            intent.putExtras(bundle);
+        }
 
         Button toResults = findViewById(R.id.submitButton);
         toResults.setOnClickListener(view -> {
-            Intent intent = new Intent(this, ResultActivity.class);
             startActivity(intent);
         });
     }
