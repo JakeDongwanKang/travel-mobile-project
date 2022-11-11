@@ -22,8 +22,7 @@ public class InterestsActivity extends AppCompatActivity {
 
         Button toActivityInfo = findViewById(R.id.btnToInfo);
         toActivityInfo.setOnClickListener(view -> {
-            //Bundle bundle = getIntent().getExtras();
-            Bundle bundle = new Bundle();
+            Bundle bundle = getIntent().getExtras();
             Intent intent = new Intent(this, InfoActivity.class);
             String boxResults = "";
 
@@ -49,7 +48,9 @@ public class InterestsActivity extends AppCompatActivity {
             if (!boxResults.isEmpty()) {
                 boxResults = boxResults.substring(1);
             }
-
+            if (bundle == null) {
+                bundle = getIntent().getExtras();
+            }
             bundle.putString("category", boxResults);
             intent.putExtras(bundle);
             startActivity(intent);

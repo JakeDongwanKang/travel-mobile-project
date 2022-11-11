@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -46,10 +47,11 @@ import java.util.Locale;
 import java.util.Map;
 
 public class ResultActivity extends AppCompatActivity {
-    String baseURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=+&region=";
+    String baseURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?&keyword=+&rankby=prominence&radius=50000&location=";
     String category = "&type=";
     String key = "&key=AIzaSyDvPs0AMFg6GwgLBG3yk7res3FLrJWk0Ps";
     String query = "";
+    ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +59,10 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_results);
 
         Bundle bundle = getIntent().getExtras();
-        query += baseURL + getCountryCode(bundle.getString("country"))
+        query += baseURL + bundle.getDouble("lat") + "%2C" + bundle.getDouble("lng")
                 + category + bundle.getString("category") + key;
 
-        // for testing if no country input
-//        query += baseURL + "ca"
-//                + category + bundle.getString("category") + key;
+        System.out.println(query);
 
 //        list.setOnItemClickListener((adapterView, view, position, id) -> {
 //            MapFragment mapFragment = new MapFragment();
@@ -74,6 +74,10 @@ public class ResultActivity extends AppCompatActivity {
 //            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 //            fragmentTransaction.replace(R.id.ctnFragment, mapFragment).addToBackStack(null).commit();
 //        });
+
+//        dialog = new ProgressDialog(this);
+//        dialog.setMessage("Loading....");
+//        dialog.show();
 
         AsyncTaskRunner runner = new AsyncTaskRunner();
         runner.execute(query);
@@ -95,7 +99,11 @@ public class ResultActivity extends AppCompatActivity {
 
                         for (int i = 0; i < results.length(); i++) {
                             name[i] = results.getJSONObject(i).getString("name");
-                            rating[i] = "Rating: " + results.getJSONObject(i).getDouble("rating");
+                            rating[i] = "Rating: ";
+                            if (results.getJSONObject(i).has("rating")) {
+                                rating[i] += results.getJSONObject(i).getDouble("rating");
+                            }
+
                             String types = "";
                             for (int j = 0; j < results.getJSONObject(i).getJSONArray("types").length(); j++) {
                                 types += results.getJSONObject(i).getJSONArray("types").getString(j) + ", ";
@@ -122,14 +130,5 @@ public class ResultActivity extends AppCompatActivity {
             queue.add(request);
             return null;
         }
-    }
-
-    String getCountryCode(String country) {
-        Map<String, String> countries = new HashMap<>();
-        for (String iso : Locale.getISOCountries()) {
-            Locale l = new Locale("", iso);
-            countries.put(l.getDisplayCountry(), iso);
-        }
-        return countries.get(country);
     }
 }

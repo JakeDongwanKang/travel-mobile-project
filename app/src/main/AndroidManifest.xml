@@ -92,7 +92,7 @@
         <activity
             android:name=".InfoActivity"
             android:exported="true"
-            android:parentActivityName=".InterestsActivity">
+            android:parentActivityName=".CityActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 

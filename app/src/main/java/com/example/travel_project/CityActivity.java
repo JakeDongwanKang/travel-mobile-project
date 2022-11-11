@@ -27,10 +27,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CityActivity extends AppCompatActivity {
     ArrayList<String> citiesArrList = new ArrayList<>();
+    HashMap<String, Double> cityLongitude = new HashMap<>();
+    HashMap<String, Double> cityLatitude = new HashMap<>();
     SparseBooleanArray sparseBooleanArray;
+    String selectedCity;
+    double selectedLongitude;
+    double selectedLatitude;
     String url;
     ListView citiesList;
     String valueHolder;
@@ -55,15 +61,6 @@ public class CityActivity extends AppCompatActivity {
 
         AsyncTaskRunner runner = new AsyncTaskRunner();
         runner.execute(url);
-
-        Button toInfo = findViewById(R.id.btnToInfo);
-        toInfo.setOnClickListener(view -> {
-            Bundle bundle2 = new Bundle();
-            Intent intent2 = new Intent(this, InfoActivity.class);
-            bundle2.putString("userCities", valueHolder);
-            intent2.putExtra("bundle", bundle);
-            startActivity(intent2);
-        });
     }
 
     private class AsyncTaskRunner extends AsyncTask<String, Void, String> {
@@ -77,6 +74,10 @@ public class CityActivity extends AppCompatActivity {
                         JSONArray jsonObjectMain = response.getJSONArray("geonames");
                         for(int i = 0; i < jsonObjectMain.length(); i++) {
                             String name = jsonObjectMain.getJSONObject(i).getString("name");
+                            double lng = jsonObjectMain.getJSONObject(i).getDouble("lng");
+                            double lat = jsonObjectMain.getJSONObject(i).getDouble("lat");
+                            cityLongitude.put(name, lng);
+                            cityLatitude.put(name, lat);
                             citiesArrList.add(name);
                         }
                         ArrayAdapter adapter = new ArrayAdapter(CityActivity.this, android.R.layout.simple_list_item_multiple_choice, citiesArrList);
@@ -84,19 +85,25 @@ public class CityActivity extends AppCompatActivity {
                         citiesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
-                                sparseBooleanArray = citiesList.getCheckedItemPositions();
-                                valueHolder = "" ;
-                                int i = 0 ;
-                                while (i < sparseBooleanArray.size()) {
-                                    if (sparseBooleanArray.valueAt(i)) {
-                                        valueHolder += citiesArrList.get(sparseBooleanArray.keyAt(i)) + ",";
-                                    }
-                                    i++ ;
-                                }
-                                valueHolder = valueHolder.replaceAll("(,)*$", "");
-//                                for(int x = 0; x < userCities.length; ++x) {
-//                                    Log.d("arr", userCities[x]);
+//                                sparseBooleanArray = citiesList.getCheckedItemPositions();
+//                                valueHolder = "" ;
+//                                int i = 0 ;
+//                                while (i < sparseBooleanArray.size()) {
+//                                    if (sparseBooleanArray.valueAt(i)) {
+//                                        valueHolder += citiesArrList.get(sparseBooleanArray.keyAt(i)) + ",";
+//                                    }
+//                                    i++ ;
 //                                }
+//                                valueHolder = valueHolder.replaceAll("(,)*$", "");
+                                selectedCity = (String) parent.getItemAtPosition(position);
+                                selectedLongitude = cityLongitude.get(selectedCity);
+                                selectedLatitude = cityLatitude.get(selectedCity);
+                                Bundle bundle = new Bundle();
+                                Intent intent = new Intent(CityActivity.this, InterestsActivity.class);
+                                bundle.putDouble("lng", selectedLongitude);
+                                bundle.putDouble("lat", selectedLatitude);
+                                intent.putExtras(bundle);
+                                startActivity(intent);
                             }
                         });
 
