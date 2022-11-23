@@ -81,24 +81,13 @@
         <activity
             android:name=".ResultActivity"
             android:exported="true"
-            android:parentActivityName=".InfoActivity">
+            android:parentActivityName=".InterestsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
-
-        <activity
-            android:name=".InfoActivity"
-            android:exported="true"
-            android:parentActivityName=".CityActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
 
         <activity
             android:name=".SignupActivity"

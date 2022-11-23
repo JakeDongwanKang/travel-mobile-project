@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     Context c;
     String[] name;
@@ -42,7 +43,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return name.length;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView text1, text2, text3;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -50,5 +52,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             text2 = itemView.findViewById(R.id.rating);
             text3 = itemView.findViewById(R.id.types);
         }
+
+
     }
 }

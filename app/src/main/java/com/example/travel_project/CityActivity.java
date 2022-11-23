@@ -58,6 +58,7 @@ public class CityActivity extends AppCompatActivity {
         dialog = new ProgressDialog(this);
         dialog.setMessage("Loading....");
         dialog.show();
+        citiesArrList.add("Pick a City");
 
         AsyncTaskRunner runner = new AsyncTaskRunner();
         runner.execute(url);
@@ -80,7 +81,7 @@ public class CityActivity extends AppCompatActivity {
                             cityLatitude.put(name, lat);
                             citiesArrList.add(name);
                         }
-                        ArrayAdapter adapter = new ArrayAdapter(CityActivity.this, android.R.layout.simple_list_item_multiple_choice, citiesArrList);
+                        ArrayAdapter adapter = new ArrayAdapter(CityActivity.this, android.R.layout.simple_list_item_1, citiesArrList);
                         citiesList.setAdapter(adapter);
                         citiesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
@@ -95,15 +96,20 @@ public class CityActivity extends AppCompatActivity {
 //                                    i++ ;
 //                                }
 //                                valueHolder = valueHolder.replaceAll("(,)*$", "");
-                                selectedCity = (String) parent.getItemAtPosition(position);
-                                selectedLongitude = cityLongitude.get(selectedCity);
-                                selectedLatitude = cityLatitude.get(selectedCity);
-                                Bundle bundle = new Bundle();
-                                Intent intent = new Intent(CityActivity.this, InterestsActivity.class);
-                                bundle.putDouble("lng", selectedLongitude);
-                                bundle.putDouble("lat", selectedLatitude);
-                                intent.putExtras(bundle);
-                                startActivity(intent);
+                                if(position != 0) {
+                                    selectedCity = (String) parent.getItemAtPosition(position);
+                                    selectedLongitude = cityLongitude.get(selectedCity);
+                                    selectedLatitude = cityLatitude.get(selectedCity);
+                                    Bundle bundle = new Bundle();
+                                    Intent intent = new Intent(CityActivity.this, InterestsActivity.class);
+                                    bundle.putDouble("lng", selectedLongitude);
+                                    bundle.putDouble("lat", selectedLatitude);
+                                    intent.putExtras(bundle);
+                                    startActivity(intent);
+                                } else {
+
+                                }
+
                             }
                         });
 

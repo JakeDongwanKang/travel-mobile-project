@@ -2,6 +2,7 @@ package com.example.travel_project;
 
 import static android.app.PendingIntent.getActivity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -21,6 +22,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -29,6 +31,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.net.PlacesClient;
 
@@ -46,7 +54,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class ResultActivity extends AppCompatActivity {
+public class ResultActivity extends AppCompatActivity  {
     String baseURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?&keyword=+&rankby=prominence&radius=50000&location=";
     String category = "&type=";
     String key = "&key=AIzaSyDvPs0AMFg6GwgLBG3yk7res3FLrJWk0Ps";
@@ -64,24 +72,10 @@ public class ResultActivity extends AppCompatActivity {
 
         System.out.println(query);
 
-//        list.setOnItemClickListener((adapterView, view, position, id) -> {
-//            MapFragment mapFragment = new MapFragment();
-//            Bundle bundle = new Bundle();
-//            bundle.putString("Title", (String) list.getItemAtPosition(position));
-//            mapFragment.setArguments(bundle);
-//
-//            FragmentManager fragmentManager = getSupportFragmentManager();
-//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            fragmentTransaction.replace(R.id.ctnFragment, mapFragment).addToBackStack(null).commit();
-//        });
-
-//        dialog = new ProgressDialog(this);
-//        dialog.setMessage("Loading....");
-//        dialog.show();
-
         AsyncTaskRunner runner = new AsyncTaskRunner();
         runner.execute(query);
     }
+
 
     private class AsyncTaskRunner extends AsyncTask<String, Void, String> {
 
@@ -112,11 +106,15 @@ public class ResultActivity extends AppCompatActivity {
                             category[i] = types;
                         }
 
+                        if(results.length() == 0) {
+                            TextView view = findViewById(R.id.results);
+                            view.setText("No results found");
+                        }
                         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getApplicationContext(), name, rating, category);
-
                         RecyclerView recyclerView = findViewById(R.id.recyclerView);
                         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                         recyclerView.setAdapter(recyclerViewAdapter);
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

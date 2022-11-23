@@ -23,7 +23,7 @@ public class InterestsActivity extends AppCompatActivity {
         Button toActivityInfo = findViewById(R.id.btnToInfo);
         toActivityInfo.setOnClickListener(view -> {
             Bundle bundle = getIntent().getExtras();
-            Intent intent = new Intent(this, InfoActivity.class);
+            Intent intent = new Intent(this, ResultActivity.class);
             String boxResults = "";
 
             if (box.isChecked()) {

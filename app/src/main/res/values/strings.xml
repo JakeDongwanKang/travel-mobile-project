@@ -15,4 +15,7 @@
     <string name="map">Map</string>
     <string name="back">Back</string>
     <string name="sign_up">Sign Up</string>
+    <string name="country">Pick a Country</string>
+    <string name="state">Pick a State</string>
+    <string name="city">Pick a City</string>
 </resources>

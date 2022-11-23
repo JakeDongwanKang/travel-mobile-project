@@ -52,6 +52,7 @@ public class StateActivity extends AppCompatActivity {
         dialog = new ProgressDialog(this);
         dialog.setMessage("Loading....");
         dialog.show();
+        statesArrList.add("Pick a State");
 
         AsyncTaskRunner runner = new AsyncTaskRunner();
         runner.execute(url);
@@ -77,15 +78,20 @@ public class StateActivity extends AppCompatActivity {
                         statesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
-                                userState = (String) parent.getItemAtPosition(position);
-                                stateId = stateCode.get(userState);
-                                Bundle bundle = new Bundle();
-                                Intent intent = new Intent(StateActivity.this, CityActivity.class);
-                                bundle.putString("state", userState);
-                                bundle.putString("id", stateId);
-                                intent.putExtra("bundle", bundle);
-                                startActivity(intent);
-                                //Toast.makeText(MainActivity.this, userCountry + countryId, Toast.LENGTH_SHORT).show();
+                                if(position != 0) {
+                                    userState = (String) parent.getItemAtPosition(position);
+                                    stateId = stateCode.get(userState);
+                                    Bundle bundle = new Bundle();
+                                    Intent intent = new Intent(StateActivity.this, CityActivity.class);
+                                    bundle.putString("state", userState);
+                                    bundle.putString("id", stateId);
+                                    intent.putExtra("bundle", bundle);
+                                    startActivity(intent);
+                                    //Toast.makeText(MainActivity.this, userCountry + countryId, Toast.LENGTH_SHORT).show();
+                                } else {
+
+                                }
+
                             }
                         });
 
