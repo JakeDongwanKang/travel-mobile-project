@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#fbf5d7">
+
 
     <TextView
         android:id="@+id/results"
@@ -12,7 +14,8 @@
         android:layout_marginTop="20dp"
         android:text="@string/results"
         android:textSize="30sp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:fontFamily="sans-serif-black"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
